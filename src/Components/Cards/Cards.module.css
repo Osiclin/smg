@@ -1,0 +1,7 @@
+.container>div{
+    margin-right: 1rem;
+}
+
+.container>div:last-child{
+    margin-right: 0;
+}

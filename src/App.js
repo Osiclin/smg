@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import Cards from './Components/Cards/Cards';
+import Layout from './Components/Layout/Layout';
+import Table from './Components/Table/Table';
+import { getComments } from './redux/commentSlice';
+import { getPosts } from './redux/postSlice';
+import { getUsers } from './redux/userSlice';
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUsers())
+    dispatch(getPosts())
+    dispatch(getComments())
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Cards/>
+        <Table/>
+    </Layout>
   );
 }
 
